@@ -1,0 +1,13 @@
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Variable files (often contain secrets)
+*.tfvars
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
