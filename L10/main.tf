@@ -2,12 +2,12 @@
 resource "aws_instance" "itw" {
   count         = var.instance_count
   ami           = "ami-0a1b6a02658659c2a"
-  instance_type = var.allowed_vm_types[1]
+  instance_type = "t3.small"
   region        = var.region
   tags = {
-    Name        = "local.vpc_id"
-    Environment = var.environment
-    monitoring   = var.monitoring
+    Name                        = "local.vpc_id"
+    Environment                 = var.environment
+    monitoring                  = var.monitoring
     associate_public_ip_address = var.associate_public_ip
   }
 }
@@ -22,7 +22,7 @@ resource "aws_security_group" "allow_tls" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   security_group_id = aws_security_group.allow_tls.id
-  cidr_ipv4         = aws_vpc.main.cidr_block
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443
